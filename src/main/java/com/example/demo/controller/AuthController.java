@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.Set;
 
 @RestController
@@ -39,7 +40,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody AuthRequest request) {
+    public ResponseEntity<?> register(@Valid @RequestBody AuthRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("Username already taken");
