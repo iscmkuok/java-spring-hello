@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger log = Logger.getLogger(GlobalExceptionHandler.class.getName());
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidation(MethodArgumentNotValidException ex) {
@@ -40,6 +43,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneral(Exception ex) {
+        log.severe("Unhandled exception: " + ex.getMessage());
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", Instant.now().toString());
         body.put("status", 500);
