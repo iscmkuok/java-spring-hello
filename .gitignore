@@ -1,0 +1,24 @@
+# Compiled output
+target/
+
+# IDE / editor
+.idea/
+*.iml
+*.iws
+.classpath
+.project
+.settings/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.env
+
+# Logs
+*.log
+logs/
